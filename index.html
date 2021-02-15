@@ -8,15 +8,7 @@
 <body>
 
   <div id="app" class="container mt-5">
-    <h3>{{ mensaje }}</h3>
-    <h3>Resultado: {{invertido}}</h3>
-    <input type="text" class="form-control" v-model="mensaje">
-    <hr>
-      <button class="btn btn-success" @click="contador++">+</button>
-      <button class="btn btn-danger" @click="contador--">-</button>
-      <div class="progress">
-	<div class="progress-bar" role="progressbar" :style="{'width': contador + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" :class="color">{{ contador}} %</div>
-      </div>
+    <saludo></saludo>
   </div>
 
 

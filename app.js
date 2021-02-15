@@ -1,22 +1,16 @@
+Vue.component('saludo', {
+  template: '<h1>{{ saludo }}</h1>',
+  data() {
+    return {saludo: 'Hola desde componente Vue'}
+  }
+})
+  
 const app = new Vue({
   el: '#app',
   data: {
-    mensaje: 'Hola, soy Carlos',
-    contador: 0
   },
   methods: {
   },
   computed: {
-    invertido() {
-      return this.mensaje.split('').reverse().join('');
-    },
-    
-    color() {
-      return {
-	'bg-danger': this.contador <= 10,
-	'bg-warning': this.contador > 10 && this.contador <= 20,
-	'bg-success': this.contador > 20
-      }
-    }
   }
 })
