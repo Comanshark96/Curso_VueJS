@@ -1,8 +1,8 @@
 Vue.component('padre', {
   template:`
   <div class="text-center p-5 bg-dark text-white">
-    <h2>Componente padre: {{ $store.state.numero }}</h2>
-    <h3>Tien por hijo a «{{ $store.state.nombreHijo }}»</h3>
+    <h2>Componente padre: {{ numero }}</h2>
+    <h3>Tien por hijo a «{{ nombreHijo }}»</h3>
     <hijo></hijo>
   </div>
   `,
@@ -10,6 +10,10 @@ Vue.component('padre', {
     return {
       nombrePadre: ''
     }
+  },
+
+  computed: {
+    ...Vuex.mapState(['numero', 'nombreHijo']) // Se utilizan mapStates para llamar directamente a los datos.
   }
 })
   
