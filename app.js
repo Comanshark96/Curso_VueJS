@@ -1,15 +1,13 @@
 Vue.component('padre', {
   template:`
   <div class="text-center p-5 bg-dark text-white">
-    <h2>Componente padre: {{ numero }}</h2>
-    <h3>Tien por hijo a «{{ nombrePadre }}»</h3>
-    <button class="btn btn-success" @click="numero++">+</button>
-    <hijo :numero="numero" @nombreHijo="nombrePadre = $event"></hijo>
+    <h2>Componente padre: {{ $store.state.numero }}</h2>
+    <h3>Tien por hijo a «{{ $store.state.nombreHijo }}»</h3>
+    <hijo></hijo>
   </div>
   `,
   data() {
     return {
-      numero: 0,
       nombrePadre: ''
     }
   }
@@ -18,18 +16,22 @@ Vue.component('padre', {
 Vue.component('hijo', {
   template:`
   <div class="m-2 text-white text-center bg-danger">
-    <h3>Componente hijo: {{ numero }}</h3>
-    <h4>Nombre: {{ nombre }}</h4>
+    <h3>Componente hijo: {{ $store.state.numero }}</h3>
+    <h4>Nombre: {{ $store.state.nombreHijo }}</h4>
+    <button class="btn btn-success" @click="$store.commit('aumentar')">+</button>
   </div>
   `,
-  props: ['numero'],
+})
 
-  data() {
-    return {nombre: 'Julio'}
+const store = new Vuex.Store({
+  state: {
+    numero: 0,
+    nombreHijo: 'Julio'
   },
-  
-  mounted() {
-    this.$emit('nombreHijo', this.nombre)
+  mutations: {
+    aumentar() {
+      this.state.numero++;
+    }
   }
 })
 
@@ -40,5 +42,6 @@ const app = new Vue({
   methods: {
   },
   computed: {
-  }
+  },
+  store
 })
